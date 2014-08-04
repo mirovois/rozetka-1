@@ -31,9 +31,10 @@ public class Rozetka {
         new Wait(webDriver).waiting().until(ExpectedConditions.elementToBeClickable(By.name("profile")));
         personalCabinet = homePage.openProfile();
         System.out.println(webDriver.getCurrentUrl());
-        //Assert.assertTrue(webDriver.getCurrentUrl().contains("http://my.rozetka.com.ua/"));
+        Assert.assertEquals(webDriver.getCurrentUrl(), "http://my.rozetka.com.ua/");
         personalCabinet.logOut();
-        Assert.assertTrue(webDriver.getCurrentUrl().contains("http://rozetka.com.ua/"));
+        new Wait(webDriver).waiting().until(ExpectedConditions.elementToBeClickable(By.name("signin")));
+        Assert.assertTrue(webDriver.findElement(By.name("signin")).isEnabled());
     }
 
     @AfterClass

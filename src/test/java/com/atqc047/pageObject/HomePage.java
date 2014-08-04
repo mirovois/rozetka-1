@@ -14,7 +14,12 @@ public class HomePage {
         webDriver.findElement(By.name("signin")).click();
         webDriver.findElement(By.name("login")).sendKeys("atqc047@email.com");
         webDriver.findElement(By.name("password")).sendKeys("1qaz2wsx");
-        //webDriver.findElement(By.tagName("submit")).submit();
+        webDriver.findElement(By.name("msg")).submit();
         return new HomePage(webDriver);
+    }
+
+    public PersonalCabinet openProfile() {
+        webDriver.findElement(By.name("profile")).click();
+        return new PersonalCabinet(webDriver);
     }
 }
