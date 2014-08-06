@@ -27,19 +27,18 @@ public class Rozetka {
     @Test
     public void firsTask(){
         homePage = new HomePage(webDriver);
-        homePage.logIn();
+        homePage = homePage.logIn();
         new Wait(webDriver).waiting().until(ExpectedConditions.elementToBeClickable(By.name("profile")));
         personalCabinet = homePage.openProfile();
-        System.out.println(webDriver.getCurrentUrl());
         Assert.assertEquals(webDriver.getCurrentUrl(), "http://my.rozetka.com.ua/");
-        personalCabinet.logOut();
+        homePage = personalCabinet.logOut();
         new Wait(webDriver).waiting().until(ExpectedConditions.elementToBeClickable(By.name("signin")));
         Assert.assertTrue(webDriver.findElement(By.name("signin")).isEnabled());
     }
 
     @AfterClass
     public void tearDown(){
-
+        webDriver.close();
     }
 
 }
